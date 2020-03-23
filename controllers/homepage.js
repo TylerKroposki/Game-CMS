@@ -113,9 +113,8 @@ module.exports = {
             res.render('main/register', {title: 'Register', error: "Passwords do not match, please try again."});
         }
 
-    }
+    },
 
-    ,
     fourohfour: (req, res) => {
         res.render('main/404');
     }
