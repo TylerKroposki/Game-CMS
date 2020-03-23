@@ -1,0 +1,28 @@
+{
+  "name": "cms",
+  "version": "1.0.0",
+  "description": "CMS Web Systems Project",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tyler Kroposki | https://tylerk.me/",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.4",
+    "express": "^4.17.1",
+    "express-flash": "0.0.2",
+    "express-handlebars": "^3.1.0",
+    "express-myconnection": "^1.0.4",
+    "express-session": "^1.17.0",
+    "express-validator": "^6.3.0",
+    "method-override": "^3.0.0",
+    "morgan": "^1.9.1",
+    "mysql": "^2.17.1",
+    "nodemon": "^2.0.1",
+    "path": "^0.12.7",
+    "util": "^0.12.1",
+    "yuicompressor": "^2.4.8"
+  }
+}

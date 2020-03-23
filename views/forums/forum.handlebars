@@ -1,0 +1,27 @@
+<div class="slider slider--small">
+    <div class="slider__visual">
+        <div class="slider__header">
+            <h2>
+                <div class="pattern-text"><span class="pattern-text__original">{{forum}}</span><span class="pattern-text__shadow">{{forum}}</span></div>
+            </h2>
+            <h4>{{cat}}</h4>
+        </div>
+    </div>
+</div>
+<div class="main-content" role="main">
+    <div class="forums__title-bar">
+        <h1>{{forum}}</h1>
+        <div class="clear-fix"></div>
+    </div>
+    <div class="forums__container">
+        {{#each threads}}
+        <div class="forums__forum-container">
+            <a href="/forums/t/{{threadID}}"><h4 class="forums__forum-thread-name">{{threadName}}</h4></a>
+            <div class="forums__forum-thread-author">By <a href="/logs/{{authorName}}">{{authorName}}</a>, on {{threadCreateDate}}</div>
+        </div>
+        {{/each}}
+    </div>
+
+
+</div>
+<div class="clear-fix"></div>

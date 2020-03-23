@@ -1,0 +1,228 @@
+<div class="slider">
+    <div class="slider__visual">
+        <div class="slider__header">
+            <h2>
+                <div class="pattern-text"><span class="pattern-text__original">Server</span><span class="pattern-text__shadow">Server</span></div>
+            </h2>
+            <h4>Play with 208 players</h4>
+        </div>
+        <div class="play-now"><a class="play-now__click" href="#"></a>
+            <div class="play-now__btn"><span class="text-gradient">
+                  <s style="width: 455px; height: 20; top: 0px; color: #878787;"><b style="top: -0px;">Play now</b></s>
+                  <s style="width: 455px; height: 20; top: 1px; color: #858585;"><b style="top: -1px;">Play now</b></s>
+                  <s style="width: 455px; height: 20; top: 2px; color: #828282;"><b style="top: -2px;">Play now</b></s>
+                  <s style="width: 455px; height: 20; top: 3px; color: #808080;"><b style="top: -3px;">Play now</b></s>
+                  <s style="width: 455px; height: 20; top: 4px; color: #7E7E7E;"><b style="top: -4px;">Play now</b></s>
+                  <s style="width: 455px; height: 20; top: 5px; color: #7B7B7B;"><b style="top: -5px;">Play now</b></s>
+                  <s style="width: 455px; height: 20; top: 6px; color: #797979;"><b style="top: -6px;">Play now</b></s>
+                  <s style="width: 455px; height: 20; top: 7px; color: #777777;"><b style="top: -7px;">Play now</b></s>
+                  <s style="width: 455px; height: 20; top: 8px; color: #747474;"><b style="top: -8px;">Play now</b></s>
+                  <s style="width: 455px; height: 20; top: 9px; color: #727272;"><b style="top: -9px;">Play now</b></s>
+                  <s style="width: 455px; height: 20; top: 10px; color: #707070;"><b style="top: -10px;">Play now</b></s>
+                  <s style="width: 455px; height: 20; top: 11px; color: #6D6D6D;"><b style="top: -11px;">Play now</b></s>
+                  <s style="width: 455px; height: 20; top: 12px; color: #6B6B6B;"><b style="top: -12px;">Play now</b></s>
+                  <s style="width: 455px; height: 20; top: 13px; color: #686868;"><b style="top: -13px;">Play now</b></s>
+                  <s style="width: 455px; height: 20; top: 14px; color: #666666;"><b style="top: -14px;">Play now</b></s>
+                  <s style="width: 455px; height: 20; top: 15px; color: #646464;"><b style="top: -15px;">Play now</b></s>
+                  <s style="width: 455px; height: 20; top: 16px; color: #616161;"><b style="top: -16px;">Play now</b></s>
+                  <s style="width: 455px; height: 20; top: 17px; color: #5F5F5F;"><b style="top: -17px;">Play now</b></s>
+                  <s style="width: 455px; height: 20; top: 18px; color: #5D5D5D;"><b style="top: -18px;">Play now</b></s>
+                  <s style="width: 455px; top: 0; color: #5A5A5A;"><b style="top: 0;">Play now</b></s></span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="main-content" role="main">
+    <div class="main-content__side main-content__side--left">
+        <div class="news__outer">
+            <div class="news">
+                <div class="news__title-bar">
+                    <h1>Latest news</h1><a href="news_archive.html">News Archive</a>
+                    <div class="clear-fix"></div>
+                </div>
+                <div class="news__container">
+                    {{#each articles}}
+                    <article class="news__article">
+                        <div class="news__article__avatar">
+                            <figure><img src="/static/assets/img/profileImgs/{{authorImg}}" alt="PFP"></figure>
+                        </div>
+                        <div class="news__article__content">
+                            <h1><a href="/forums/t/{{threadID}}">{{threadName}}</a></h1>
+                            <p>Posted by <a href="/adventurelogs/{{threadAuthor}}"><span>{{author}}</span></a>, {{threadCreateDate}}</p>
+                            <div class="news__article__content__container">
+                                <p>{{threadContent}}</p>
+                            </div><br><a href="/forums/t/{{threadID}}">Read More</a>
+                        </div>
+                        <div class="clear-fix"></div>
+                    </article>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <aside class="main-content__side main-content__side--right">
+        <div class="sidebar">
+            <div class="sidebar__container">
+                <div class="sidebar__block link-buttons__outer">
+                    <div class="link-buttons"><a class="link-buttons__item link-buttons__item--play-now" href="#">
+                        <figure>
+                            <picture>
+                                <source srcset="/static/assets/img/icon_play.png 1x, /static/assets/img/icon_play@2x.png 2x"/><img src="/static/assets/img/icon_play.png" alt="" width="25" height="26"/>
+                            </picture>
+                        </figure>
+                        <h3><span>Play now</span><small>Play alongside hundreds of other players</small></h3>
+                        <div class="clear-fix"></div></a><a class="link-buttons__item link-buttons__item--forum" href="/forums">
+                        <figure>
+                            <picture>
+                                <source srcset="/static/assets/img/icon_forum.png 1x, /static/assets/img/icon_forum@2x.png 2x"/><img src="/static/assets/img/icon_forum.png" alt="" width="27" height="22"/>
+                            </picture>
+                        </figure>
+                        <h3><span>Forums</span><small>Get to know the community</small></h3>
+                        <div class="clear-fix"></div></a><a class="link-buttons__item link-buttons__item--store" href="/store">
+                        <figure>
+                            <picture>
+                                <source srcset="/static/assets/img/icon_store.png 1x, /static/assets/img/icon_store@2x.png 2x"/><img src="/static/assets/img/icon_store.png" alt="" width="29" height="28"/>
+                            </picture>
+                        </figure>
+                        <h3><span>Store</span><small>Purchase in-game items</small></h3>
+                        <div class="clear-fix"></div></a><a class="link-buttons__item link-buttons__item--vote" href="/logs">
+                        <figure>
+                            <picture>
+                                <source srcset="/static/assets/img/icon_vote.png 1x, /static/assets/img/icon_vote@2x.png 2x"/><img src="/static/assets/img/icon_vote.png" alt="" width="28" height="22"/>
+                            </picture>
+                        </figure>
+                        <h3><span>Adventure Logs</span><small>Track progress and achievements with friends</small></h3>
+                        <div class="clear-fix"></div></a><a class="link-buttons__item link-buttons__item--hiscores" href="/hiscores">
+                        <figure>
+                            <picture>
+                                <source srcset="/static/assets/img/icon_hiscores.png 1x, /static/assets/img/icon_hiscores@2x.png 2x"/><img src="/static/assets/img/icon_hiscores.png" alt="" width="27" height="28"/>
+                            </picture>
+                        </figure>
+                        <h3><span>Hiscores</span><small>Check to see who’s on top</small></h3>
+                        <div class="clear-fix"></div></a></div>
+                </div>
+                <div class="sidebar__block__outer">
+                    <div class="sidebar__block__header">
+                        <h2>User area</h2>
+                    </div>
+                    <div class="sidebar__block login-area__outer">
+                        {{#if user}}
+                            <figure><a href="/account"><img src="/static/assets/img/profileImgs/{{user.userProfileImg}}" alt="{{user.userDisplayName}}"></a></figure>
+                            <span>Welcome back, <a href="/account">{{user.userDisplayName}}</a></span><a href="/logout">Logout</a>
+                        {{else}}
+                        <form class="login-area" method="POST" action="/login">
+                            <div class="form-group">
+                                <input class="input-text" type="text" name="username" placeholder="Username" required>
+                            </div>
+                            <div class="form-group">
+                                <input class="input-text" type="password" name="password" placeholder="Password" required>
+                            </div>
+                            <div class="form-group">
+                                <div class="login-area__cta">
+                                    <button class="btn btn--primary" type="submit">Log in</button><a class="btn btn--secondary" href="/register">Register</a>
+                                </div>
+                            </div>
+                        </form>
+                        {{/if}}
+                    </div>
+                </div>
+                <div class="statistic-block__outer">
+                    <div class="statistic-block">
+                        <figure class="statistic-block__icon">
+                            <picture>
+                                <source srcset="/static/assets/img/accounts_icon.png 1x, /static/assets/img/accounts_icon@2x.png 2x"/><img src="/static/assets/img/accounts_icon.png" alt="" width="49" height="49"/>
+                            </picture>
+                        </figure>
+                        <div class="statistic-block__container">
+                            <h2>
+                                <div class="pattern-text"><span class="pattern-text__original">120,134</span><span class="pattern-text__shadow">120,134</span></div>
+                            </h2>
+                            <h4>Accounts created</h4>
+                        </div>
+                        <div class="clear-fix"></div>
+                    </div>
+                </div>
+                <div class="sidebar__block__outer">
+                    <div class="sidebar__block__header">
+                        <div class="label-options__outer">
+                            <h2>Top players</h2>
+                            <div class="label-options"><a class="label-options__item label-options__item--active" href="#">Total level</a><a class="label-options__item" href="#">Top XP</a><a class="label-options__item" href="#">Top Kills</a></div>
+                            <div class="clear-fix"></div>
+                        </div>
+                    </div>
+                    <div class="sidebar__block top-players__outer">
+                        <table class="top-players">
+                            <tr>
+                                <th class="top-players__rank">Rank</th>
+                                <th class="top-players__username">Username</th>
+                                <th class="top-players__total-level">Total level</th>
+                                <th class="top-players__experience">Experience</th>
+                            </tr>
+                            <tr data-rank="1">
+                                <td class="top-players__rank">1</td>
+                                <td class="top-players__username">Tyler</td>
+                                <td class="top-players__total-level">2281</td>
+                                <td class="top-players__experience">5,200,000,000</td>
+                            </tr>
+                            <tr data-rank="2">
+                                <td class="top-players__rank">2</td>
+                                <td class="top-players__username">Tyler</td>
+                                <td class="top-players__total-level">2281</td>
+                                <td class="top-players__experience">5,200,000,000</td>
+                            </tr>
+                            <tr data-rank="3">
+                                <td class="top-players__rank">3</td>
+                                <td class="top-players__username">Tyler</td>
+                                <td class="top-players__total-level">2281</td>
+                                <td class="top-players__experience">5,200,000,000</td>
+                            </tr>
+                            <tr data-rank="4">
+                                <td class="top-players__rank">4</td>
+                                <td class="top-players__username">Tyler</td>
+                                <td class="top-players__total-level">2281</td>
+                                <td class="top-players__experience">5,200,000,000</td>
+                            </tr>
+                            <tr data-rank="5">
+                                <td class="top-players__rank">5</td>
+                                <td class="top-players__username">Tyler</td>
+                                <td class="top-players__total-level">2281</td>
+                                <td class="top-players__experience">5,200,000,000</td>
+                            </tr>
+                            <tr data-rank="6">
+                                <td class="top-players__rank">6</td>
+                                <td class="top-players__username">Tyler</td>
+                                <td class="top-players__total-level">2281</td>
+                                <td class="top-players__experience">5,200,000,000</td>
+                            </tr>
+                            <tr data-rank="7">
+                                <td class="top-players__rank">7</td>
+                                <td class="top-players__username">Tyler</td>
+                                <td class="top-players__total-level">2281</td>
+                                <td class="top-players__experience">5,200,000,000</td>
+                            </tr>
+                            <tr data-rank="8">
+                                <td class="top-players__rank">8</td>
+                                <td class="top-players__username">Tyler</td>
+                                <td class="top-players__total-level">2281</td>
+                                <td class="top-players__experience">5,200,000,000</td>
+                            </tr>
+                            <tr data-rank="9">
+                                <td class="top-players__rank">9</td>
+                                <td class="top-players__username">Tyler</td>
+                                <td class="top-players__total-level">2281</td>
+                                <td class="top-players__experience">5,200,000,000</td>
+                            </tr>
+                            <tr data-rank="10">
+                                <td class="top-players__rank">10</td>
+                                <td class="top-players__username">Tyler</td>
+                                <td class="top-players__total-level">2281</td>
+                                <td class="top-players__experience">5,200,000,000</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+    <div class="clear-fix"></div>
+</div>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Simplicity-PS">
+    <meta name="keywords" content="Simplicity-PS">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>CMS</title>
+    <link href="/static/assets/css/styles.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="page-container">
+    <div class="page-wrapper">
+
+
+        {{#if user}}
+            <div class="top-bar">
+                <div class="players-online"><span><strong>208</strong> Players online, <strong>35</strong> In Wilderness</span></div>
+                <div class="top-bar__logged-in">
+                    <figure>Welcome back, <a href="/account">{{user.userDisplayName}}</a></span><a href="/logout">Logout</a></figure>
+                </div>
+                <div class="clear-fix"></div>
+            </div>
+        {{else}}
+            <div class="top-bar">
+                <div class="players-online"><span><strong>208</strong> Players online, <strong>35</strong> In Wilderness</span></div>
+                <div class="top-bar__sign-up"><span><a href="/login">Log in</a> or <a href="/register">Create an account</a></span></div>
+                <div class="clear-fix"></div>
+            </div>
+        {{/if}}
+        <div class="navbar">
+            <div class="navbar__logo"><a href="/">
+                <picture>
+                    <source srcset="/static/assets/img/logo.png 1x, /static/assets/img/logo@2x.png 2x"/><img src="/static/assets/img/logo.png" alt="" width="124" height="149"/>
+                </picture></a></div>
+            <div class="navbar__container">
+                <div class="navbar__side navbar__side--left"><a class="navbar__item--active navbar__item" href="/"><span>Homepage</span><small>View Latest News</small></a><a class="navbar__item" href="/forums"><span>Forums</span><small>Join the community</small></a><a class="navbar__item" href="#"><span>Play now</span><small>Play now for free</small></a></div>
+                <div class="navbar__side navbar__side--right"><a class="navbar__item" href="/store"><span>Store</span><small>Buy in-game items</small></a><a class="navbar__item" href="/logs/"><span>Adventure Logs</span><small>Track adventure progress</small></a><a class="navbar__item" href="/hiscores"><span>Hiscores</span><small>Server leaderboards</small></a></div>
+                <div class="clear-fix"></div>
+            </div>
+        </div>

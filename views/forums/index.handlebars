@@ -1,0 +1,34 @@
+<div class="slider slider--small">
+    <div class="slider__visual">
+        <div class="slider__header">
+            <h2>
+                <div class="pattern-text"><span class="pattern-text__original">Community Forums</span><span class="pattern-text__shadow">Community Forums</span></div>
+            </h2>
+            <h4>Join the community</h4>
+        </div>
+    </div>
+</div>
+<div class="main-content" role="main">
+    <div class="forums__title-bar">
+        <h1>Forums</h1>
+        <div class="clear-fix"></div>
+    </div>
+    <div class="forums__container">
+        {{#each categories}}
+        <div class="forums__category-container">
+            <h2 class="forums__category-title">{{forumCatName}}</h2>
+            <div class="forums__category-forum-list">
+            {{#each forums}}
+                <div class="forums__category-item-container">
+                    <a href="/forums/f/{{forumID}}"><h4 class="forums__category-item-title">{{forumName}}</h4></a>
+                    <div class="forums__category-item-content">
+                        {{forumDesc}}
+                    </div>
+                </div>
+            {{/each}}
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    <div class="clear-fix"></div>
+</div>

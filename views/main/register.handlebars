@@ -1,0 +1,93 @@
+<div class="slider slider--small">
+    <div class="slider__visual">
+        <div class="slider__header">
+            <h2>
+                <div class="pattern-text"><span class="pattern-text__original">Register</span><span class="pattern-text__shadow">Register</span></div>
+            </h2>
+            <h4>Create your account</h4>
+        </div>
+    </div>
+</div>
+<div class="main-content hiscores__outer" role="main">
+    <div class="main-content__side main-content__side--left">
+        <div class="main-block">
+            <div class="main-block__header main-block__header--secondary">
+                <h1>Register</h1>
+            </div>
+            <div class="main-block__body register__outer">
+                <form class="register" method="post" action="/register">
+                    {{#if error}}
+                        <div class="error_msg">Username is already taken, please try a different one.</div>
+                    {{/if}}
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input class="input-text" type="text" name="username" id="username" required>
+                        <div class="clear-fix"></div>
+                        <p>Between 3 and 12 characters</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input class="input-text" type="password" name="password" id="password" required>
+                        <div class="clear-fix"></div>
+                        <p>Between 3 and 33 characters</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm_password">Confirm password</label>
+                        <input class="input-text" type="password" name="confirm_password" id="confirm_password" required>
+                        <div class="clear-fix"></div>
+                        <p>Confirm your password</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input class="input-text" type="email" name="email" id="email" required>
+                        <div class="clear-fix"></div>
+                        <p>Enter a valid E-mail adress in order to verify your account</p>
+                    </div>
+                    <div class="register__separator"></div>
+                    <div class="register__cta">
+                        <button class="login__btn" type="submit">Create account</button>
+                        <div class="clear-fix"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<aside class="main-content__side main-content__side--right">
+    <div class="sidebar">
+        <div class="sidebar__container">
+            <div class="statistic-block__outer">
+                <div class="sidebar__block__header sidebar__block__header--secondary">
+                    <h2>Frequently asked questions</h2>
+                </div>
+                <div class="register__faq">
+                    <div class="register__faq__item">
+                        <h4>Lorem ipsum dolor sit amet</h4>
+                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                    </div>
+                    <div class="register__faq__item">
+                        <h4>Lorem ipsum dolor sit amet</h4>
+                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                    </div>
+                    <div class="register__faq__item">
+                        <h4>Lorem ipsum dolor sit amet</h4>
+                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                    </div>
+                    <div class="register__faq__item">
+                        <h4>Lorem ipsum dolor sit amet</h4>
+                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                    </div>
+                    <div class="register__faq__item">
+                        <h4>Lorem ipsum dolor sit amet</h4>
+                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                    </div>
+                    <div class="register__faq__item">
+                        <h4>Still have a question ?</h4>
+                        <p>Feel free to use our forums to ask any questions. Simply create a thread in the <a href="#">support</a> section of the forum and we will do our best to reply as fast as possible.</p><a class="register__faq__item__btn" href="#">Go to forums</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</aside>
+<div class="clear-fix"></div>

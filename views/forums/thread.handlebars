@@ -1,0 +1,34 @@
+<div class="main-content" role="main">
+    <div class="forums__title-bar">
+        <h1>{{thread.threadName}}</h1>
+        <div class="clear-fix"></div>
+    </div>
+    <div class="forums__container">
+        <div class="forums__thread-container">
+            <div class="forums__thread-author-section">
+                <img src="/static/assets/img/profileImgs/{{thread.author.userProfileImg}}">
+                <h1>{{thread.author.userDisplayName}}</h1>
+            </div>
+            <div class="forums__thread-content-section">
+                <div class="forums__thread-content-postdate">Posted {{thread.threadCreateDate}}</div>
+                <p>{{thread.threadContent}}</p>
+            </div>
+            <div id="clear"></div>
+        </div>
+
+        {{#each thread.replies}}
+        <div class="forums__thread-container">
+            <div class="forums__thread-author-section">
+                <img src="/static/assets/img/profileImgs/{{repAuthor.userProfileImg}}">
+                <h1>{{repAuthor.userDisplayName}}</h1>
+            </div>
+            <div class="forums__thread-content-section">
+                <div class="forums__thread-content-postdate">Posted {{replyDate}}</div>
+                <p>{{replyContent}}</p>
+            </div>
+            <div id="clear"></div>
+        </div>
+        {{/each}}
+    </div>
+    <div class="clear-fix"></div>
+</div>
