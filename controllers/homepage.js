@@ -97,6 +97,7 @@ module.exports = {
             var userCheck = await database.query(`SELECT userName FROM users WHERE userName="${username}"`);
 
             if (userCheck.length > 0) {
+                console.log('hi');
                 res.render('main/register', {error: "Username already taken, please try again."});
             } else {
 

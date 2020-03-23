@@ -17,7 +17,7 @@
             <div class="main-block__body register__outer">
                 <form class="register" method="post" action="/register">
                     {{#if error}}
-                        <div class="error_msg">Username is already taken, please try a different one.</div>
+                        <div class="error_msg">{{error}}</div>
                     {{/if}}
                     <div class="form-group">
                         <label for="username">Username</label>
@@ -83,7 +83,7 @@
                     </div>
                     <div class="register__faq__item">
                         <h4>Still have a question ?</h4>
-                        <p>Feel free to use our forums to ask any questions. Simply create a thread in the <a href="#">support</a> section of the forum and we will do our best to reply as fast as possible.</p><a class="register__faq__item__btn" href="#">Go to forums</a>
+                        <p>Feel free to use our forums to ask any questions. Simply create a thread in the <a href="#">support</a> section of the forum and we will do our best to reply as fast as possible.</p><a class="register__faq__item__btn" href="/forums">Go to forums</a>
                     </div>
                 </div>
             </div>

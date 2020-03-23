@@ -2,10 +2,10 @@ const util = require('util');
 const mysql = require('mysql');
 const pool = mysql.createPool({
     connectionLimit: 10,
-    host: '',
-    user: '',
-    password: '',
-    database: ''
+    host: 'munchies.cvjxe26amcaf.us-east-2.rds.amazonaws.com',
+    user: 'tylerkmunchies',
+    password: 'Password1',
+    database: 'gamecms'
 });
 
 // Ping database to check for common exception errors.

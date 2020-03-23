@@ -13,24 +13,12 @@ router.all('/*', (req, res, next) => {
 router.route('/')
     .get(controller.index);
 
-router.post('/search', async (req, res) => {
-    check('username').notEmpty();
-    const errors = validationResult(req);
-    if(errors.isEmpty()) {
-        let username = req.body.username;
-        await database.query(`SELECT userRights, userDisplayName, userIsBanned, userCredits, userSupportRights, userJoinDate FROM users WHERE userDisplayName="${username}"`, (err, rows) => {
-            if (rows.length > 0) {
-                if (rows) {
-                    res.render('logs/index');
-                }
-            } else {
-                res.render('logs/search', { error: true});
-            }
-        });
-    } else {
-        res.redirect('/logs/')
-    }
-});
+router.route('/search')
+    .post(controller.submitUsername);
+
+router.route('/search/:username')
+    .get(controller.searchUsername);
+
 
 
 module.exports = router;
