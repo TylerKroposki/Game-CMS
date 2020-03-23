@@ -1,0 +1,213 @@
+<div class="main-content hiscores__outer" role="main">
+    <div class="main-content__side main-content__side--left">
+        <div class="main-block">
+            <div class="account">
+                <div class="main-block__header main-block__header--secondary">
+                    <h1>User: {{profile.userDisplayName}}</h1>
+                </div>
+                <div class="main-block__body">
+                    <div class="account__body">
+                        <div class="account__info">
+                            <div class="account__info__avatar__outer">
+                                <div class="account__info__avatar"><img src="/static/assets/img/profileImgs/{{profile.userProfileImg}}" alt=""></div>
+                            </div>
+                            <div class="account__info__container">
+                                <table>
+                                    <tr>
+                                        <td>Display name:</td>
+                                        <td>{{account.userDisplayName}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Rank:</td>
+                                        {{#if_eq account.userRights 0}}
+                                            <td>Normal User</td>
+                                        {{else if_eq account.userRights 1}}
+                                            <td><font color="#60FF4F">Moderator</font></td>
+                                        {{else if_eq account.userRights 2}}
+                                            <td><font color="#faff12;">Administrator</font></td>
+                                        {{else if_eq account.userRights 3}}
+                                            <td><font color="#879eff">Developer</font></td>
+                                        {{/if_eq}}
+                                    </tr>
+                                    <tr>
+                                        <td>Username:</td>
+                                        <td>{{account.userName}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Email:</td>
+                                        <td>{{account.userEmail}}</td>
+                                    </tr>
+                                </table>
+                                <table>
+                                    <tr>
+                                        <td>Support Rights</td>
+                                        <td>{{account.userSupportRights}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Credits:</td>
+                                        <td>{{account.userCredits}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Account status:</td>
+                                        {{#if_eq account.userIsBanned 1}}
+                                            <td><s><font color="#000">Banned</font></s></td>
+                                        {{else}}
+                                            <td><font color="#2B4A1F">Not Banned</font></td>
+                                        {{/if_eq}}
+                                    </tr>
+                                    <tr>
+                                        <td>Member since:</td>
+                                        <td>{{account.userJoinDate}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="account__skills__outer">
+                        {{> account/skills}}
+                        {{> account/activity}}
+                        <div class="clear-fix"></div>
+                    </div>
+                    <div class="account__clan">
+                        <div class="account__clan__container">
+                            <h2>
+                                <div class="pattern-text"><span class="pattern-text__original">Reign of Terror</span><span class="pattern-text__shadow">Reign of Terror</span></div>
+                            </h2>
+                            <p>Clan rank: <font color="#65551F">General</font></p><a class="account__clan__btn" href="#">Clan ranking</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <aside class="main-content__side main-content__side--right">
+        <div class="sidebar">
+            <div class="sidebar__container">
+                <div class="statistic-block__outer">
+                    <div class="sidebar__block__header sidebar__block__header--secondary">
+                        <h2>Account navigation</h2>
+                    </div>
+                    <div class="sidebar__block link-buttons__outer">
+                        <div class="link-buttons account__links"><a class="link-buttons__item link-buttons__item--default account__links__item" href="account.html">
+                            <h3><span>Account panel</span></h3>
+                            <div class="clear-fix"></div></a><a class="link-buttons__item link-buttons__item--default account__links__item" href="account_edit.html">
+                            <h3><span>Edit display name</span></h3>
+                            <div class="clear-fix"></div></a><a class="link-buttons__item link-buttons__item--default account__links__item" href="account_edit.html">
+                            <h3><span>Edit password</span></h3>
+                            <div class="clear-fix"></div></a><a class="link-buttons__item link-buttons__item--default account__links__item" href="account_edit.html">
+                            <h3><span>Edit e-mail</span></h3>
+                            <div class="clear-fix"></div></a></div>
+                    </div>
+                </div>
+                <div class="sidebar__block__outer">
+                    <div class="sidebar__block__header">
+                        <div class="label-options__outer">
+                            <h2>Store activity</h2>
+                            <div class="clear-fix"></div>
+                        </div>
+                    </div>
+                    <div class="sidebar__block">
+                        <div class="account__activity">
+                            <div class="account__activity__item">
+                                <h3>Purchased 1x <span>Partyhat</span></h3>
+                                <h5><i>
+                                    <picture>
+                                        <source srcset="img/icon_clock.png 1x, img/icon_clock@2x.png 2x"/><img src="img/icon_clock.png" alt="" width="13" height="13"/>
+                                    </picture></i>1 February 2016 at 19:24</h5>
+                            </div>
+                            <div class="account__activity__item">
+                                <h3>Purchased 1x <span>Partyhat</span></h3>
+                                <h5><i>
+                                    <picture>
+                                        <source srcset="img/icon_clock.png 1x, img/icon_clock@2x.png 2x"/><img src="img/icon_clock.png" alt="" width="13" height="13"/>
+                                    </picture></i>1 February 2016 at 19:24</h5>
+                            </div>
+                            <div class="account__activity__item">
+                                <h3>Purchased 1x <span>Partyhat</span></h3>
+                                <h5><i>
+                                    <picture>
+                                        <source srcset="img/icon_clock.png 1x, img/icon_clock@2x.png 2x"/><img src="img/icon_clock.png" alt="" width="13" height="13"/>
+                                    </picture></i>1 February 2016 at 19:24</h5>
+                            </div>
+                            <div class="account__activity__item">
+                                <h3>Purchased 1x <span>Partyhat</span></h3>
+                                <h5><i>
+                                    <picture>
+                                        <source srcset="img/icon_clock.png 1x, img/icon_clock@2x.png 2x"/><img src="img/icon_clock.png" alt="" width="13" height="13"/>
+                                    </picture></i>1 February 2016 at 19:24</h5>
+                            </div>
+                            <div class="account__activity__item">
+                                <h3>Purchased 1x <span>Partyhat</span></h3>
+                                <h5><i>
+                                    <picture>
+                                        <source srcset="img/icon_clock.png 1x, img/icon_clock@2x.png 2x"/><img src="img/icon_clock.png" alt="" width="13" height="13"/>
+                                    </picture></i>1 February 2016 at 19:24</h5>
+                            </div>
+                            <div class="account__activity__item">
+                                <h3>Purchased 1x <span>Partyhat</span></h3>
+                                <h5><i>
+                                    <picture>
+                                        <source srcset="img/icon_clock.png 1x, img/icon_clock@2x.png 2x"/><img src="img/icon_clock.png" alt="" width="13" height="13"/>
+                                    </picture></i>1 February 2016 at 19:24</h5>
+                            </div>
+                            <div class="account__activity__item">
+                                <h3>Purchased 1x <span>Partyhat</span></h3>
+                                <h5><i>
+                                    <picture>
+                                        <source srcset="img/icon_clock.png 1x, img/icon_clock@2x.png 2x"/><img src="img/icon_clock.png" alt="" width="13" height="13"/>
+                                    </picture></i>1 February 2016 at 19:24</h5>
+                            </div>
+                            <div class="account__activity__item">
+                                <h3>Purchased 1x <span>Partyhat</span></h3>
+                                <h5><i>
+                                    <picture>
+                                        <source srcset="img/icon_clock.png 1x, img/icon_clock@2x.png 2x"/><img src="img/icon_clock.png" alt="" width="13" height="13"/>
+                                    </picture></i>1 February 2016 at 19:24</h5>
+                            </div>
+                            <div class="account__activity__item">
+                                <h3>Purchased 1x <span>Partyhat</span></h3>
+                                <h5><i>
+                                    <picture>
+                                        <source srcset="img/icon_clock.png 1x, img/icon_clock@2x.png 2x"/><img src="img/icon_clock.png" alt="" width="13" height="13"/>
+                                    </picture></i>1 February 2016 at 19:24</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar__block__outer">
+                    <div class="account__statistics">
+                        <div class="account__statistics__container">
+                            <div class="account__statistics__item">
+                                <h3>
+                                    <div class="pattern-text"><span class="pattern-text__original">35</span><span class="pattern-text__shadow">35</span></div>
+                                </h3>
+                                <p>Purchases this month</p>
+                            </div>
+                            <div class="account__statistics__item">
+                                <h3>
+                                    <div class="pattern-text"><span class="pattern-text__original">1023</span><span class="pattern-text__shadow">1023</span></div>
+                                </h3>
+                                <p>Total Purchases</p>
+                            </div>
+                            <div class="account__statistics__item">
+                                <h3>
+                                    <div class="pattern-text"><span class="pattern-text__original">$0</span><span class="pattern-text__shadow">$0</span></div>
+                                </h3>
+                                <p>Donated this month</p>
+                            </div>
+                            <div class="account__statistics__item">
+                                <h3>
+                                    <div class="pattern-text"><span class="pattern-text__original">$15</span><span class="pattern-text__shadow">$15</span></div>
+                                </h3>
+                                <p>Total amount donated</p>
+                            </div>
+                            <div class="clear-fix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+    <div class="clear-fix"></div>
+</div>
