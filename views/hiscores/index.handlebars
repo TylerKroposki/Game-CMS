@@ -25,7 +25,7 @@
                                 <th class="clan-hiscores__experience">Experience</th>
                             </tr>
                             {{#each rows}}
-                            <tr>
+                            <tr data-rank="{{rank}}">
                                 <td class="clan-hiscores__rank">{{rank}}</td>
                                 <td class="clan-hiscores__username"><a href="/logs/search/{{userName}}">{{userName}}</a></td>
                                 <td class="clan-hiscores__level">{{totalLevel}}</td>

@@ -32,7 +32,7 @@ module.exports = {
                 let rows = await database.query(q1);
                 pageCount = Math.ceil(count / parseInt(pageSize));
                 for (var i = 0; i < rows.length; i++) {
-                    rows[i].rank = i + 1;
+                    rows[i].rank = i + 1 + offset;
                 }
                 for (var i = 0; i < pageCount; i++) {
                     output += `<a href=\"/hiscores/ironman/p/${i + 1}\">${i + 1}</a>`;
@@ -69,7 +69,7 @@ module.exports = {
                 let rows = await database.query(q1);
                 pageCount = Math.ceil(count / parseInt(pageSize));
                 for (var i = 0; i < rows.length; i++) {
-                    rows[i].rank = i + 1;
+                    rows[i].rank = i + 1 + offset;
                 }
                 for (var i = 0; i < pageCount; i++) {
                     output += `<a href=\"/hiscores/ironman/s/${id}/p/${i + 1}\">${i + 1}</a>`;
@@ -112,7 +112,7 @@ module.exports = {
                 let rows = await database.query(q1);
                 pageCount = Math.ceil(count / parseInt(pageSize));
                 for (var i = 0; i < rows.length; i++) {
-                    rows[i].rank = i + 1;
+                    rows[i].rank = i + 1 + offset;
                 }
                 for (var i = 0; i < pageCount; i++) {
                     output += `<a href=\"/hiscores/hcim/p/${i + 1}\">${i + 1}</a>`;
@@ -146,7 +146,7 @@ module.exports = {
             let rows = await database.query(q1);
             pageCount = Math.ceil(count/parseInt(pageSize));
             for(var i = 0; i < rows.length; i++) {
-                rows[i].rank = i + 1;
+                rows[i].rank = i + 1 + offset;
             }
             for(var i = 0; i < pageCount; i++) {
                 output += `<a href=\"/hiscores/hcim/s/${id}/p/${i + 1}\">${i + 1}</a>`;
@@ -185,7 +185,7 @@ module.exports = {
                 for (var i = 0; i < rows.length; i++) {
                     let username = await database.query(q3, [rows[i].userID]);
                     rows[i].userName = username[0].userDisplayName;
-                    rows[i].rank = i + 1;
+                    rows[i].rank = i + 1 + offset;
                 }
                 res.render('hiscores/index', {
                     output: output,
@@ -218,7 +218,7 @@ module.exports = {
             let rows = await database.query(q1);
             pageCount = Math.ceil(count/parseInt(pageSize));
             for(var i = 0; i < rows.length; i++) {
-                rows[i].rank = i + 1;
+                rows[i].rank = i + 1 + offset;
             }
             for(var i = 0; i < pageCount; i++) {
                 output += `<a href=\"/hiscores/s/${id}/p/${i + 1}\">${i + 1}</a>`;
