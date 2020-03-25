@@ -20,7 +20,9 @@ router.route('/f/:id')
 
 //Get thread and display
 router.route('/t/:id')
-    .get(controller.getThread)
+    .get(controller.getThread);
+
+router.route('/t/:id', is_login)
     .post(controller.submitThreadReply);
 
 

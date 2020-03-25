@@ -11,7 +11,7 @@ router.all('/*', (req, res, next) => {
 router.route('/')
     .get(controller.index);
 
-router.route('/login')
+router.route('/login' )
     .get(controller.login)
     .post(controller.loginSubmit);
 

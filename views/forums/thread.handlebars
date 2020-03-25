@@ -7,7 +7,7 @@
         <div class="forums__thread-container">
             <div class="forums__thread-author-section">
                 <img src="/static/assets/img/profileImgs/{{thread.author.userProfileImg}}">
-                <h1>{{thread.author.userDisplayName}}</h1>
+                <h1><a href="/logs/search/{{thread.author.userDisplayName}}">{{thread.author.userDisplayName}}</a></h1>
             </div>
             <div class="forums__thread-content-section">
                 <div class="forums__thread-content-postdate">Posted {{thread.threadCreateDate}}</div>
@@ -20,15 +20,32 @@
         <div class="forums__thread-container">
             <div class="forums__thread-author-section">
                 <img src="/static/assets/img/profileImgs/{{repAuthor.userProfileImg}}">
-                <h1>{{repAuthor.userDisplayName}}</h1>
+                <h1><a href="/logs/search/{{repAuthor.userDisplayName}}">{{repAuthor.userDisplayName}}</a></h1>
             </div>
             <div class="forums__thread-content-section">
                 <div class="forums__thread-content-postdate">Posted {{replyDate}}</div>
-                <p>{{replyContent}}</p>
+                <p>{{{replyContent}}}</p>
             </div>
             <div id="clear"></div>
         </div>
         {{/each}}
     </div>
     <div class="clear-fix"></div>
+    {{#if user}}
+    <div class="reply__cta">
+        <form action="/forums/t/{{thread.threadID}}" method="post">
+            <div class="form-group">
+                <textarea class="form-control" id="content" name="content" rows="3"></textarea>
+            </div>
+                <button class="btn btn--primary mt-2" type="submit">Reply</button>
+                <div class="clear-fix"></div>
+        </form>
+    </div>
+    {{else}}
+        <div class="reply__not_logged_in__cta">
+            <div class="error_msg">Login Or Register to Reply</div>
+            <button class="btn btn--primary" onclick="window.location.href = '/login';">Login</button>
+            <button class="btn btn--primary" onclick="window.location.href = '/register';">Register</button>
+        </div>
+    {{/if}}
 </div>

@@ -1,5 +1,4 @@
 const database = require('../config/database');
-const dbf = require('../middleware/dbFunctions');
 
 module.exports = {
 
@@ -7,28 +6,17 @@ module.exports = {
     index: async (req, res) => {
 
         //Query database to retrieve categories
-        await dbf.q('SELECT * FROM forumcategories', async (err, rows) => {
-            if(err) {
-                console.log(err);
-            } else {
-
-                //For each category find the forums associated.
-                for(let i = 0; i < rows.length; i++) {
-
-                    //Nested query for each category
-                    await dbf.q(`SELECT * FROM forums WHERE forumCatID=${rows[i].forumCatID}`, async (error, res) => {
-                        if(error) {
-                            console.log(error);
-                        } else {
-                            rows[i].forums = JSON.parse(JSON.stringify(res));
-                        }
-                    });
-                }
-
-                //Pass categories with forum objects to view
-                res.render('forums/index', {categories: rows});
+        let q1 = "SELECT * FROM forumcategories";
+        let q2 = "SELECT * FROM forums WHERE forumCatID = ?";
+        let categories = await database.query('SELECT * FROM forumcategories');
+        if(categories.length) {
+            for(var i = 0; i < categories.length; i++) {
+                let forums = await database.query(q2, [categories[i].forumCatID]);
+                categories[i].forums = JSON.parse(JSON.stringify(forums));
             }
-        });
+        }
+        res.render('forums/index', {categories: categories});
+
     },
 
     //Get and render threads for a given forum
@@ -38,34 +26,26 @@ module.exports = {
         if(isNaN(id)) {
             res.render('forums/error', {error: "INVALID INPUT"});
         } else {
-            await dbf.q(`SELECT * FROM threads WHERE forumID=${id}`, async (err, rows) => {
-                if (err) {
-                    console.log(err);
-                } else {
-                    if (rows.length > 0) {
-                        for (let i = 0; i < rows.length; i++) {
-                            await dbf.q(`SELECT * FROM users WHERE userID=${rows[0].threadAuthor}`, (userErr, userRes) => {
-                                if (err) {
-                                    throw err;
-                                } else {
-                                    rows[i].authorName = userRes[0].userDisplayName;
-                                }
-                            });
-                        }
-
-                        let forumName = await database.query(`SELECT forumName FROM forums WHERE forumID=${id}`);
-                        let catName = await database.query(`SELECT * FROM forumcategories WHERE forumCatID = ${rows[0].forumID}`);
-
-                        res.render('forums/forum', {
-                            threads: rows,
-                            forum: forumName[0].forumName,
-                            cat: catName[0].forumCatName
-                        });
-                    } else {
-                        res.render('forums/error', {error: "NO FORUMS FOUND FOR SPECIFIED CATEGORY"});
+            let q1 = "SELECT * FROM threads WHERE forumID = ?";
+            let q2 = "SELECT userDisplayName FROM users WHERE userID = ?";
+            let q3 = "SELECT forumName FROM forums WHERE forumID = ?";
+            let q4 = "SELECT * FROM forumcategories WHERE forumCatID = ?";
+            let threads = await database.query(q1, [id]);
+            if(threads.length) {
+                for(var i = 0; i < threads.length; i++) {
+                    let user = await database.query(q2, [threads[i].threadAuthor]);
+                    if(user.length && user.length > 0) {
+                        threads.authorName = user[0].userDisplayName;
                     }
                 }
-            });
+                let forumName = await database.query(q3, [id]);
+                let catName = await database.query(q4, [threads[0].forumID]);
+                if(forumName.length && forumName.length > 0 && catName.length && catName.length > 0) {
+                    res.render('forums/forum', {threads: threads, forum: forumName[0].forumName, cat: catName[0].forumCatName});
+                }
+            } else {
+                res.render('forums/error', {error: "NO FORUMS FOUND FOR SPECIFIED CATEGORY"});
+            }
         }
     },
 
@@ -75,32 +55,36 @@ module.exports = {
         if(isNaN(id)) {
             res.render('forums/error', {error: "INVALID INPUT"});
         } else {
-            await dbf.q(`SELECT * FROM threads WHERE threadID = ${id}`, async (err, rows) => {
-                if(rows.length > 0) {
-                    if (err) {
-                        console.log(err);
-                    } else {
-                        let author = await database.query(`SELECT * FROM users WHERE userID=${rows[0].threadAuthor}`)
-                        rows[0].author = author[0];
-                        await dbf.q(`SELECT * FROM threadReplies WHERE threadID = ${id}`, async (repErr, repRows) => {
-                            if (repRows.length > 0) {
-                                rows[0].replies = repRows;
-                                for(var i = 0; i < rows[0].replies.length; i++) {
-                                    let repAuthor = await database.query(`SELECT * FROM users WHERE userID=${rows[0].replies[i].userID}`);
-                                    rows[0].replies[i].repAuthor = repAuthor[0];
-                                }
-                            }
-                        });
-                        res.render('forums/thread', {thread: rows[0]});
-                    }
-                } else {
-                    res.render('forums/error', {error: "NO THREAD FOUND"});
+            let q1 = "SELECT * FROM threads WHERE threadID = ?";
+            let q2 = "SELECT userProfileImg, userRights, userDisplayName, userIsBanned FROM users WHERE userID = ?";
+            let q3 = "SELECT * FROM threadreplies WHERE threadID = ?";
+            let thread = await database.query(q1, [id]);
+            if(thread[0]) {
+                let author = await database.query(q2, [thread[0].threadAuthor]);
+                let replies = await database.query(q3, [id]);
+                thread[0].author = author[0];
+                thread[0].replies = replies;
+                for(var i = 0; i < thread[0].replies.length; i++) {
+                   let repAuthor = await database.query(q2, [thread[0].replies[i].userID]);
+                    thread[0].replies[i].repAuthor = await repAuthor[0];
                 }
-            });
+            }
+            res.render('forums/thread', {thread: thread[0]});
         }
     },
 
-    submitThreadReply: (req, res) => {
-
+    submitThreadReply: async (req, res) => {
+        let content = req.body.content;
+        let id = req.params.id;
+        if(!isNaN(id)) {
+            let sql = "INSERT INTO threadreplies SET userID = ?, threadID = ?, replyContent = ?";
+            await database.query(sql, [req.session.user.userID, id, content], (err, rows) => {
+                let link = `/forums/t/${id}`;
+                res.redirect(link);
+            });
+        } else {
+            let link = `/forums/t/${id}`;
+            res.redirect(link);
+        }
     }
 };
