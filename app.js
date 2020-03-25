@@ -34,6 +34,7 @@ app.use(session({
     resave: true
 }));
 
+
 app.use(flash());
 app.use(methodOverride(function(req, res){
     if (req.body && typeof req.body == 'object' && '_method' in req.body) {

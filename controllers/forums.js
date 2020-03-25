@@ -35,7 +35,7 @@ module.exports = {
                 for(var i = 0; i < threads.length; i++) {
                     let user = await database.query(q2, [threads[i].threadAuthor]);
                     if(user.length && user.length > 0) {
-                        threads.authorName = user[0].userDisplayName;
+                        threads[i].authorName = await user[0].userDisplayName;
                     }
                 }
                 let forumName = await database.query(q3, [id]);

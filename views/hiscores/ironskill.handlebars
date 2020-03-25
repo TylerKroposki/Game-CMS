@@ -43,11 +43,11 @@
 
         {{else}}
             <div class="hiscores__pagination">
-                <a class="hiscores__pagination__btn hiscores__pagination__btn--previous" href="/hiscores/s/{{id}}/p/{{prev}}">Previous</a>
+                <a class="hiscores__pagination__btn hiscores__pagination__btn--previous" href="/hiscores/ironman/s/{{id}}/p/{{prev}}">Previous</a>
                 <div class="hiscores__pagination__pages">
                     {{{output}}}
                 </div>
-                <a class="hiscores__pagination__btn hiscores__pagination__btn--next" href="/hiscores/s/{{id}}/p/{{next}}">Next</a>
+                <a class="hiscores__pagination__btn hiscores__pagination__btn--next" href="/hiscores/ironman/s/{{id}}/p/{{next}}">Next</a>
                 <div class="clear-fix"></div>
             </div>
         {{/if}}
@@ -79,23 +79,7 @@
                         <h3><span>Hardcore Ironman</span><small>HCIM cannot trade with other people and only have one life</small></h3>
                         <div class="clear-fix"></div></a></div>
                 </div>
-                <div class="sidebar__block__outer">
-                    <div class="sidebar__block__header">
-                        <h2>Search user</h2>
-                    </div>
-                    <div class="sidebar__block hiscores__search__outer">
-                        <form class="login-area hiscores__search" method="POST">
-                            <div class="form-group">
-                                <input class="input-text" type="text" name="username" placeholder="Username" required>
-                            </div>
-                            <div class="form-group">
-                                <div class="login-area__cta">
-                                    <button class="btn btn--primary" type="submit">Search</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+                {{> hiscores/accountSearch}}
                 {{> hiscores/ironmanskills}}
             </div>
         </div>
