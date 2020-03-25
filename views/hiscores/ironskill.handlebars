@@ -14,7 +14,7 @@
             <div class="clan-hiscores hiscores">
                 <div class="main-block">
                     <div class="main-block__header">
-                        <h1>Overall</h1>
+                        <h1>{{skillName}}</h1>
                     </div>
                     <div class="main-block__body">
                         <table class="clan-hiscores__table hiscores__table">
@@ -25,12 +25,12 @@
                                 <th class="clan-hiscores__experience">Experience</th>
                             </tr>
                             {{#each rows}}
-                            <tr>
-                                <td class="clan-hiscores__rank">{{rank}}</td>
-                                <td class="clan-hiscores__username"><a href="/logs/search/{{userName}}">{{userName}}</a></td>
-                                <td class="clan-hiscores__level">{{totalLevel}}</td>
-                                <td class="clan-hiscores__experience">{{overallXP}}</td>
-                            </tr>
+                                <tr>
+                                    <td class="clan-hiscores__rank">{{rank}}</td>
+                                    <td class="clan-hiscores__username"><a href="/logs/search/{{userDisplayName}}">{{userDisplayName}}</a></td>
+                                    <td class="clan-hiscores__level">{{lvl}}</td>
+                                    <td class="clan-hiscores__experience">{{xp}}</td>
+                                </tr>
                             {{/each}}
                         </table>
                     </div>
@@ -42,35 +42,35 @@
 
 
         {{else}}
-        <div class="hiscores__pagination">
-            <a class="hiscores__pagination__btn hiscores__pagination__btn--previous" href="/hiscores/p/{{prev}}">Previous</a>
-            <div class="hiscores__pagination__pages">
-                {{{output}}}
+            <div class="hiscores__pagination">
+                <a class="hiscores__pagination__btn hiscores__pagination__btn--previous" href="/hiscores/s/{{id}}/p/{{prev}}">Previous</a>
+                <div class="hiscores__pagination__pages">
+                    {{{output}}}
+                </div>
+                <a class="hiscores__pagination__btn hiscores__pagination__btn--next" href="/hiscores/s/{{id}}/p/{{next}}">Next</a>
+                <div class="clear-fix"></div>
             </div>
-                <a class="hiscores__pagination__btn hiscores__pagination__btn--next" href="/hiscores/p/{{next}}">Next</a>
-            <div class="clear-fix"></div>
-        </div>
         {{/if}}
     </div>
     <aside class="main-content__side main-content__side--right">
         <div class="sidebar">
             <div class="sidebar__container">
                 <div class="sidebar__block link-buttons__outer">
-                    <div class="link-buttons"><a class="link-buttons__item link-buttons__item--default link-buttons__item--active" href="/hiscores/p/1">
+                    <div class="link-buttons"><a class="link-buttons__item link-buttons__item--default" href="/hiscores/1">
                         <figure>
                             <picture>
                                 <source srcset="/static/assets/img/icon_user.png 1x, /static/assets/img/icon_user@2x.png 2x"/><img src="/static/assets/img/icon_user.png" alt="" width="25" height="27"/>
                             </picture>
                         </figure>
                         <h3><span>Regular</span><small>Regular game accounts without any limitations</small></h3>
-                        <div class="clear-fix"></div></a><a class="link-buttons__item link-buttons__item--default" href="/hiscores/ironman/p/1">
+                        <div class="clear-fix"></div></a><a class="link-buttons__item link-buttons__item--default link-buttons__item--active" href="/hiscores/ironman/1">
                         <figure>
                             <picture>
                                 <source srcset="/static/assets/img/icon_ironman.png 1x, /static/assets/img/icon_ironman@2x.png 2x"/><img src="/static/assets/img/icon_ironman.png" alt="" width="30" height="35"/>
                             </picture>
                         </figure>
                         <h3><span>Ironman</span><small>Ironmen cannot trade with other people</small></h3>
-                        <div class="clear-fix"></div></a><a class="link-buttons__item link-buttons__item--default" href="/hiscores/hcim/p/1">
+                        <div class="clear-fix"></div></a><a class="link-buttons__item link-buttons__item--default" href="/hiscores/hcim/1">
                         <figure>
                             <picture>
                                 <source srcset="/static/assets/img/icon_hardcore_ironman.png 1x, /static/assets/img/icon_hardcore_ironman@2x.png 2x"/><img src="/static/assets/img/icon_hardcore_ironman.png" alt="" width="30" height="35"/>
@@ -96,7 +96,7 @@
                         </form>
                     </div>
                 </div>
-                {{> hiscores/skills}}
+                {{> hiscores/ironmanskills}}
             </div>
         </div>
     </aside>

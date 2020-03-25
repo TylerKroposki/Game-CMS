@@ -11,6 +11,33 @@ router.all('/*', (req, res, next) => {
     next();
 });
 
+router.route('/')
+    .get(controller.index);
+
+router.route('/p/:page')
+    .get(controller.regularGetPage);
+
+router.route('/s/:id/p/:page')
+    .get(controller.getRegSkillPage);
+
+router.route('/ironman')
+    .get(controller.ironmanIndex);
+
+router.route('/ironman/p/:page')
+    .get(controller.ironmanPage);
+
+router.route('/ironman/s/:id/p/:page')
+    .get(controller.ironmanSkillPage);
+
+router.route('/hcim')
+    .get(controller.hcimIndex);
+
+router.route('/hcim/p/:page')
+    .get(controller.hcimPage);
+
+router.route('/hcim/s/:id/p/:page')
+    .get(controller.hcimSkillPage);
+
 
 
 
