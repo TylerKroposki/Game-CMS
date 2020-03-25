@@ -146,7 +146,6 @@
                     <div class="sidebar__block__header">
                         <div class="label-options__outer">
                             <h2>Top players</h2>
-                            <div class="label-options"><a class="label-options__item label-options__item--active" href="#">Total level</a><a class="label-options__item" href="#">Top XP</a><a class="label-options__item" href="#">Top Kills</a></div>
                             <div class="clear-fix"></div>
                         </div>
                     </div>
@@ -158,66 +157,14 @@
                                 <th class="top-players__total-level">Total level</th>
                                 <th class="top-players__experience">Experience</th>
                             </tr>
-                            <tr data-rank="1">
-                                <td class="top-players__rank">1</td>
-                                <td class="top-players__username">Tyler</td>
-                                <td class="top-players__total-level">2281</td>
-                                <td class="top-players__experience">5,200,000,000</td>
+                            {{#each hs}}
+                            <tr data-rank="{{rank}}">
+                                <td class="top-players__rank">{{rank}}</td>
+                                <td class="top-players__username"  onclick="window.location.href = '/logs/search/{{userDisplayName}}';"><a href="">{{userDisplayName}}</a></td>
+                                <td class="top-players__total-level">{{totalLevel}}</td>
+                                <td class="top-players__experience">{{overallXP}}</td>
                             </tr>
-                            <tr data-rank="2">
-                                <td class="top-players__rank">2</td>
-                                <td class="top-players__username">Tyler</td>
-                                <td class="top-players__total-level">2281</td>
-                                <td class="top-players__experience">5,200,000,000</td>
-                            </tr>
-                            <tr data-rank="3">
-                                <td class="top-players__rank">3</td>
-                                <td class="top-players__username">Tyler</td>
-                                <td class="top-players__total-level">2281</td>
-                                <td class="top-players__experience">5,200,000,000</td>
-                            </tr>
-                            <tr data-rank="4">
-                                <td class="top-players__rank">4</td>
-                                <td class="top-players__username">Tyler</td>
-                                <td class="top-players__total-level">2281</td>
-                                <td class="top-players__experience">5,200,000,000</td>
-                            </tr>
-                            <tr data-rank="5">
-                                <td class="top-players__rank">5</td>
-                                <td class="top-players__username">Tyler</td>
-                                <td class="top-players__total-level">2281</td>
-                                <td class="top-players__experience">5,200,000,000</td>
-                            </tr>
-                            <tr data-rank="6">
-                                <td class="top-players__rank">6</td>
-                                <td class="top-players__username">Tyler</td>
-                                <td class="top-players__total-level">2281</td>
-                                <td class="top-players__experience">5,200,000,000</td>
-                            </tr>
-                            <tr data-rank="7">
-                                <td class="top-players__rank">7</td>
-                                <td class="top-players__username">Tyler</td>
-                                <td class="top-players__total-level">2281</td>
-                                <td class="top-players__experience">5,200,000,000</td>
-                            </tr>
-                            <tr data-rank="8">
-                                <td class="top-players__rank">8</td>
-                                <td class="top-players__username">Tyler</td>
-                                <td class="top-players__total-level">2281</td>
-                                <td class="top-players__experience">5,200,000,000</td>
-                            </tr>
-                            <tr data-rank="9">
-                                <td class="top-players__rank">9</td>
-                                <td class="top-players__username">Tyler</td>
-                                <td class="top-players__total-level">2281</td>
-                                <td class="top-players__experience">5,200,000,000</td>
-                            </tr>
-                            <tr data-rank="10">
-                                <td class="top-players__rank">10</td>
-                                <td class="top-players__username">Tyler</td>
-                                <td class="top-players__total-level">2281</td>
-                                <td class="top-players__experience">5,200,000,000</td>
-                            </tr>
+                            {{/each}}
                         </table>
                     </div>
                 </div>

@@ -48,11 +48,14 @@ html {
 
 a {
   text-decoration: none;
+  color: #4F4F4F;
 }
 
 a:visited, a:focus, a:hover, a:active, a:hover {
   outline: none;
+  color: #4F4F4F;
 }
+
 
 abbr[title] {
   border-bottom: 1px dotted;
@@ -1429,6 +1432,13 @@ a.btn--secondary {
   padding-left: 5px;
 }
 
+.top-players__username a {
+  color: #454545;
+}
+.top-players__username a:hover {
+  text-decoration: underline;
+  filter: brightness(110%);
+}
 .top-players__username, .top-players__total-level {
   padding-left: 5px;
 }

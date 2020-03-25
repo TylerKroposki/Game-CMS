@@ -5,8 +5,13 @@ const { check, validationResult } = require('express-validator');
 
 module.exports = {
     index: async (req, res) => {
-        let sql = 'SELECT * FROM threads WHERE forumID = 1';
-        const news = await database.query(sql, async (err, rows) => {
+        let sql = 'SELECT * FROM threads WHERE forumID = ?';
+        let hsSql = 'SELECT h.overallXP, h.totalLevel, u.userDisplayName FROM hiscores h INNER JOIN users u ON h.userID = u.userID ORDER BY overallXP DESC LIMIT 10';
+        let hs = await database.query(hsSql);
+        for(var i = 0; i < hs.length; i++) {
+            hs[i].rank = i + 1;
+        }
+        await database.query(sql, [1], async (err, rows) => {
 
             for(let i = 0; i < rows.length; i++) {
                 let innerSql = `SELECT * FROM users WHERE userID=${rows[i].threadAuthor}`;
@@ -14,7 +19,7 @@ module.exports = {
                 rows[i].author = author[0].userDisplayName;
                 rows[i].authorImg = author[0].userProfileImg;
             }
-            res.render('main/homepage', {title: 'CMS Homepage', error: req.flash('error'), articles: rows});
+            res.render('main/homepage', {title: 'Homepage', articles: rows, hs: hs});
         });
     },
 
