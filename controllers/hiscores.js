@@ -9,7 +9,7 @@ var currentPage = 1;
 
 module.exports = {
     index: (req, res) => {
-        res.redirect('/hiscores/1');
+        res.redirect('/hiscores/p/1');
     },
 
     ironmanIndex: (req, res) => {
