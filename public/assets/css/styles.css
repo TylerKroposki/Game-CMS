@@ -48,12 +48,10 @@ html {
 
 a {
   text-decoration: none;
-  color: #4F4F4F;
 }
 
 a:visited, a:focus, a:hover, a:active, a:hover {
   outline: none;
-  color: #4F4F4F;
 }
 
 
