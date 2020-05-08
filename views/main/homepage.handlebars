@@ -37,7 +37,7 @@
         <div class="news__outer">
             <div class="news">
                 <div class="news__title-bar">
-                    <h1>Latest news</h1><a href="news_archive.html">News Archive</a>
+                    <h1>Latest news</h1><a href="/forums/f/1">News Archive</a>
                     <div class="clear-fix"></div>
                 </div>
                 <div class="news__container">
@@ -48,7 +48,7 @@
                         </div>
                         <div class="news__article__content">
                             <h1><a href="/forums/t/{{threadID}}">{{threadName}}</a></h1>
-                            <p>Posted by <a href="/adventurelogs/{{threadAuthor}}"><span>{{author}}</span></a>, {{threadCreateDate}}</p>
+                            <p>Posted by <a href="/logs/search/{{author}}"><span>{{author}}</span></a>, {{threadCreateDate}}</p>
                             <div class="news__article__content__container">
                                 <p>{{threadContent}}</p>
                             </div><br><a href="/forums/t/{{threadID}}">Read More</a>
@@ -142,32 +142,8 @@
                         <div class="clear-fix"></div>
                     </div>
                 </div>
-                <div class="sidebar__block__outer">
-                    <div class="sidebar__block__header">
-                        <div class="label-options__outer">
-                            <h2>Top players</h2>
-                            <div class="clear-fix"></div>
-                        </div>
-                    </div>
-                    <div class="sidebar__block top-players__outer">
-                        <table class="top-players">
-                            <tr>
-                                <th class="top-players__rank">Rank</th>
-                                <th class="top-players__username">Username</th>
-                                <th class="top-players__total-level">Total level</th>
-                                <th class="top-players__experience">Experience</th>
-                            </tr>
-                            {{#each hs}}
-                            <tr data-rank="{{rank}}">
-                                <td class="top-players__rank">{{rank}}</td>
-                                <td class="top-players__username"><a href="/logs/search/{{userDisplayName}}">{{userDisplayName}}</a></td>
-                                <td class="top-players__total-level">{{totalLevel}}</td>
-                                <td class="top-players__experience">{{overallXP}}</td>
-                            </tr>
-                            {{/each}}
-                        </table>
-                    </div>
-                </div>
+                {{> global/hiscores}}
+
             </div>
         </div>
     </aside>

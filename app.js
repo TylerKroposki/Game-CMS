@@ -5,25 +5,34 @@ const flash = require('express-flash');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
 const path = require('path');
-const cron = require('node-cron');
 const methodOverride = require('method-override');
 
 const {PORT} = require('./config/config');
+
 const { selectOption, if_eq } = require('./config/functions');
 
 const app = express();
 
-//Public Directory
+//Establish a public directory
 app.use('/static', express.static('public'));
 app.set('views', path.join(__dirname, 'views'));
+
+//View engine configuration
 app.engine('handlebars', handlebars({
     defaultLayout: 'main', helpers: {select: selectOption, if_eq: if_eq}, saveUninitialized: true, resave: true}));
 app.set('view engine' , 'handlebars');
+
+
 app.use(flash());
 
+//Logs error codes, request types, responses, and ping
 app.use(logger('dev'));
+
+//Body Parser used for JSON requests to handle data
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+//Session middleware
 app.use(session({
     cookie: {
         path    : '/',
@@ -48,6 +57,7 @@ app.use(function(req,res,next){
     res.locals.user = req.session.user;
     next();
 });
+
 //Routes
 const homepage = require('./routes/homepage');
 const forums = require('./routes/forums');

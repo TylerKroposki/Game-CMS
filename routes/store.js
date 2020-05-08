@@ -11,6 +11,9 @@ router.all('/*', is_login, (req, res, next) => {
     next();
 });
 
+router.route('/')
+    .get(controller.index);
+
 
 
 module.exports = router;

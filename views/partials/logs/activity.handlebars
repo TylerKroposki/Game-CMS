@@ -1,0 +1,26 @@
+<div class="account__activity__outer">
+    <div class="main-block">
+        <div class="main-block__header">
+            <h1>Account activity</h1>
+        </div>
+        <div class="main-block__body">
+            <div class="account__activity">
+                {{#if act}}
+                {{#each act}}
+                <div class="account__activity__item account__activity__item--leveled">
+                    <h3>{{activityMessage}}</h3>
+                    <h5><i>
+                        <picture>
+                            <source srcset="/static/assets/img/icon_clock.png 1x, /static/assets/img/icon_clock@2x.png 2x"/><img src="/static/assets/img/icon_clock.png" alt="" width="13" height="13"/>
+                        </picture></i>{{activityDate}}</h5>
+                </div>
+                {{/each}}
+                {{else}}
+                    <div class="account__activity__item account__activity__item--leveled">
+                        <h3>No Account Activity</h3>
+                    </div>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</div>

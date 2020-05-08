@@ -1,4 +1,5 @@
 const database = require('../config/database');
+var sanitizeHtml = require('sanitize-html');
 
 module.exports = {
 
@@ -8,7 +9,7 @@ module.exports = {
         //Query database to retrieve categories
         let q1 = "SELECT * FROM forumcategories";
         let q2 = "SELECT * FROM forums WHERE forumCatID = ?";
-        let categories = await database.query('SELECT * FROM forumcategories');
+        let categories = await database.query(q1);
         if(categories.length) {
             for(var i = 0; i < categories.length; i++) {
                 let forums = await database.query(q2, [categories[i].forumCatID]);
@@ -76,9 +77,14 @@ module.exports = {
     submitThreadReply: async (req, res) => {
         let content = req.body.content;
         let id = req.params.id;
+        // Allow only a super restricted set of tags and attributes
+        let clean = sanitizeHtml(content, {
+            disallowedTagsMode: 'script',
+            allowedIframeHostnames: ['www.youtube.com']
+        });
         if(!isNaN(id)) {
             let sql = "INSERT INTO threadreplies SET userID = ?, threadID = ?, replyContent = ?";
-            await database.query(sql, [req.session.user.userID, id, content], (err, rows) => {
+            await database.query(sql, [req.session.user.userID, id, clean], (err, rows) => {
                 let link = `/forums/t/${id}`;
                 res.redirect(link);
             });

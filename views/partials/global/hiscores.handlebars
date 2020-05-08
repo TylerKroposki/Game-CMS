@@ -1,0 +1,26 @@
+<div class="sidebar__block__outer">
+    <div class="sidebar__block__header">
+        <div class="label-options__outer">
+            <h2>Top players</h2>
+            <div class="clear-fix"></div>
+        </div>
+    </div>
+    <div class="sidebar__block top-players__outer">
+        <table class="top-players">
+            <tr>
+                <th class="top-players__rank">Rank</th>
+                <th class="top-players__username">Username</th>
+                <th class="top-players__total-level">Total level</th>
+                <th class="top-players__experience">Experience</th>
+            </tr>
+            {{#each top}}
+                <tr data-rank="{{rank}}">
+                    <td class="top-players__rank">{{rank}}</td>
+                    <td class="top-players__username"><a href="/logs/search/{{userDisplayName}}">{{userDisplayName}}</a></td>
+                    <td class="top-players__total-level">{{totalLevel}}</td>
+                    <td class="top-players__experience">{{overallXP}}</td>
+                </tr>
+            {{/each}}
+        </table>
+    </div>
+</div>

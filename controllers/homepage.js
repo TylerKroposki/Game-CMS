@@ -19,7 +19,7 @@ module.exports = {
                 rows[i].author = author[0].userDisplayName;
                 rows[i].authorImg = author[0].userProfileImg;
             }
-            res.render('main/homepage', {title: 'Homepage', articles: rows, hs: hs});
+            res.render('main/homepage', {title: 'Homepage', articles: rows, top: hs});
         });
     },
 
