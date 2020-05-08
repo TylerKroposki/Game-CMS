@@ -27,11 +27,15 @@ module.exports = {
         if(isNaN(id)) {
             res.render('forums/error', {error: "INVALID INPUT"});
         } else {
+
+            //Prepared statements
             let q1 = "SELECT * FROM threads WHERE forumID = ?";
             let q2 = "SELECT userDisplayName FROM users WHERE userID = ?";
             let q3 = "SELECT forumName FROM forums WHERE forumID = ?";
             let q4 = "SELECT * FROM forumcategories WHERE forumCatID = ?";
+
             let threads = await database.query(q1, [id]);
+
             if(threads.length) {
                 for(var i = 0; i < threads.length; i++) {
                     let user = await database.query(q2, [threads[i].threadAuthor]);
@@ -79,7 +83,7 @@ module.exports = {
         let id = req.params.id;
         // Allow only a super restricted set of tags and attributes
         let clean = sanitizeHtml(content, {
-            disallowedTagsMode: 'script',
+            disallowedTagsMode: 'script, iframe, form, input, video, body, source, math, maction, input, link',
             allowedIframeHostnames: ['www.youtube.com']
         });
         if(!isNaN(id)) {

@@ -24,6 +24,8 @@ module.exports = {
             if(currentPage < 1) {
                 res.redirect('/hiscores/ironman/p/1');
             } else {
+
+                //Pagination offset handling
                 let offset = (parseInt(currentPage) - 1) * 26;
                 let q1 = `SELECT h.userID, u.ironStatus, h.overallXP AS xp, h.totalLevel AS lvl, u.userDisplayName FROM hiscores h INNER JOIN users u ON h.userID = u.userID WHERE u.ironStatus > 0 ORDER BY overallXP DESC LIMIT 26 OFFSET ${offset}`;
                 let countQuery = `SELECT COUNT(users.userID) AS count FROM hiscores INNER JOIN users WHERE hiscores.userID = users.userID AND users.ironStatus > 0`;

@@ -11,11 +11,13 @@ module.exports = {
         for(var i = 0; i < hs.length; i++) {
             hs[i].rank = i + 1;
         }
+
+        //Retrieve news
         await database.query(sql, [1], async (err, rows) => {
 
             for(let i = 0; i < rows.length; i++) {
-                let innerSql = `SELECT * FROM users WHERE userID=${rows[i].threadAuthor}`;
-                const author = await database.query(innerSql);
+                let innerSql = `SELECT * FROM users WHERE userID = ?`;
+                const author = await database.query(innerSql, [rows[i].threadAuthor]);
                 rows[i].author = author[0].userDisplayName;
                 rows[i].authorImg = author[0].userProfileImg;
             }
@@ -107,6 +109,7 @@ module.exports = {
                 res.render('main/register', {error: "Username already taken, please try again."});
             } else {
 
+                //Hash password
                 let hash = await bcrypt.hash(password1, 10);
                 let userQuery = `INSERT INTO users (userEmail, userProfileImg, userName, userPassword, userRights, userDisplayName, userJoinDate) VALUES(?, ?, ?, ?, ?, ?, ?)`;
                 let hsQuery = `INSERT INTO hiscores (added) VALUES (1)`;

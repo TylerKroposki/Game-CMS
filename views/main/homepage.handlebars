@@ -50,7 +50,7 @@
                             <h1><a href="/forums/t/{{threadID}}">{{threadName}}</a></h1>
                             <p>Posted by <a href="/logs/search/{{author}}"><span>{{author}}</span></a>, {{threadCreateDate}}</p>
                             <div class="news__article__content__container">
-                                <p>{{threadContent}}</p>
+                                <p>{{{threadContent}}}</p>
                             </div><br><a href="/forums/t/{{threadID}}">Read More</a>
                         </div>
                         <div class="clear-fix"></div>
@@ -102,14 +102,13 @@
                         <div class="clear-fix"></div></a></div>
                 </div>
                 <div class="sidebar__block__outer">
+                    {{#if user}}
+
+                    {{else}}
                     <div class="sidebar__block__header">
                         <h2>User area</h2>
                     </div>
                     <div class="sidebar__block login-area__outer">
-                        {{#if user}}
-                            <figure><a href="/account"><img src="/static/assets/img/profileImgs/{{user.userProfileImg}}" alt="{{user.userDisplayName}}"></a></figure>
-                            <span>Welcome back, <a href="/account">{{user.userDisplayName}}</a></span><a href="/logout">Logout</a>
-                        {{else}}
                         <form class="login-area" method="POST" action="/login">
                             <div class="form-group">
                                 <input class="input-text" type="text" name="username" placeholder="Username" required>
@@ -123,8 +122,8 @@
                                 </div>
                             </div>
                         </form>
-                        {{/if}}
                     </div>
+                    {{/if}}
                 </div>
                 <div class="statistic-block__outer">
                     <div class="statistic-block">

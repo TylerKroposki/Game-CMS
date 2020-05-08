@@ -25,15 +25,18 @@ module.exports = {
 
         if(Number(id)) {
             let newItem = 1;
+
             if(req.session.user.cart.length > 0) {
                 for (var i = 0; i < req.session.user.cart.length; i++) {
                     if (req.session.user.cart[i].prodID = id) {
+                        //Update cart quantity and total for given item
                         req.session.user.cart[i].quantity = 1 + parseInt(req.session.user.cart[i].quantity, 10);
                         req.session.user.cart[i].total = req.session.user.cart[i].prodPrice * req.session.user.cart[i].quantity;
                         newItem = 0;
                     }
                 }
             }
+            //Check for new item, and if it's a new item, push the item to the user's cart
             if(newItem === 1) {
                 const result = await database.query('SELECT * FROM storeproducts WHERE prodID = ?', [id]);
                 result[0].quantity = 1;
@@ -70,6 +73,7 @@ module.exports = {
         res.redirect('/store');
     },
 
+    //Submit checkout, add items to database, and modify user session.
     checkout: async (req, res) => {
         let userID = req.session.user.userID;
         let cart = req.session.user.cart;
@@ -79,6 +83,7 @@ module.exports = {
         if(cart.length > 0) {
             if(req.session.user.userCredits >= total) {
 
+                //Update user's session
                 req.session.user.userCredits = req.session.user.userCredits - total;
                 let q1 = "INSERT INTO transactions(userID, tranTotal, tranDate, tranStatus) VALUES(?, ?, ?, ?)";
                 let q2 = "INSERT INTO transactionitems(tranID, prodID, tranItemQuantity) VALUES(?, ?, ?)";
@@ -94,12 +99,15 @@ module.exports = {
                     }
                 });
 
+                //Update user credits in database
                 database.query(q3, [req.session.user.userCredits, userID]);
 
                 //Empty user's cart
                 req.session.user.cart = [];
                 res.redirect('/');
             } else {
+
+                //Insufficient credits response
                 res.redirect('/store/insufficient');
             }
 
