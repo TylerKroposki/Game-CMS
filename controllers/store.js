@@ -78,8 +78,11 @@ module.exports = {
 
         if(cart.length > 0) {
             if(req.session.user.userCredits >= total) {
+
+                req.session.user.userCredits = req.session.user.userCredits - total;
                 let q1 = "INSERT INTO transactions(userID, tranTotal, tranDate, tranStatus) VALUES(?, ?, ?, ?)";
                 let q2 = "INSERT INTO transactionitems(tranID, prodID, tranItemQuantity) VALUES(?, ?, ?)";
+                let q3 = "UPDATE users SET userCredits = ? WHERE userID = ?";
 
                 //Insert new transaction
                 database.query(q1, [userID, total, date, 1], (err, res) => {
@@ -90,6 +93,8 @@ module.exports = {
                         database.query(q2, [res.insertId, cart[i].prodID, cart[i].quantity]);
                     }
                 });
+
+                database.query(q3, [req.session.user.userCredits, userID]);
 
                 //Empty user's cart
                 req.session.user.cart = [];
