@@ -25,6 +25,16 @@ module.exports = {
 
         today = yyyy + '-' + mm + '-' + dd;
         return today;
-    }
+    },
+
+    findTotal: (val) => {
+        var total = 0;
+        console.log(val.length);
+        for(var i = 0; i < val.length; i++) {
+            total += val[i].price * val[i].quantity;
+            console.log(total);
+        }
+        return total;
+    },
 
 };

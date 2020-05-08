@@ -38,7 +38,7 @@ module.exports = {
             session = req.session;
             username = req.body.username;
             password = req.body.password;
-            database.query(`SELECT * FROM users WHERE userName='${username}'`, function(err,rows) {
+            database.query(`SELECT * FROM users WHERE userName = ?`, [username], function(err,rows) {
                 if(!rows) {
                     res.render('main/login', {title: "Login", error: "Invalid Username or Password."});
                 }
@@ -53,6 +53,7 @@ module.exports = {
                             if (resul) {
                                 //Add user to session
                                 req.session.user = user;
+                                req.session.user.cart = [];
                                 req.session.is_login = true;
 
                                 if (user.userRights == 2) {
@@ -99,7 +100,7 @@ module.exports = {
         let email = req.body.email;
 
         if(password1 === password2) {
-            var userCheck = await database.query(`SELECT userName FROM users WHERE userName="${username}"`);
+            var userCheck = await database.query(`SELECT userName FROM users WHERE userName = ?`, [username]);
 
             if (userCheck.length > 0) {
                 console.log('hi');
@@ -107,11 +108,11 @@ module.exports = {
             } else {
 
                 let hash = await bcrypt.hash(password1, 10);
-                let userQuery = `INSERT INTO users (userEmail, userProfileImg, userName, userPassword, userRights, userDisplayName, userJoinDate) VALUES("${email}", "avatar.png", "${username}", "${hash}", 0, "${username}", "${new Date().toISOString().slice(0, 10)}")`;
+                let userQuery = `INSERT INTO users (userEmail, userProfileImg, userName, userPassword, userRights, userDisplayName, userJoinDate) VALUES(?, ?, ?, ?, ?, ?, ?)`;
                 let hsQuery = `INSERT INTO hiscores (added) VALUES (1)`;
 
                 //Due to database using auto increment on the primary key, and hiscore values being left to the DBMS to set defaults, no additional information needs to be added, not even the user's ID.
-                database.query(userQuery);
+                database.query(userQuery, [ email, "avatar.png", username, hash, 0, username, new Date().toISOString().slice(0, 10) ]);
                 database.query(hsQuery);
                 res.render('main/registerComplete');
             }

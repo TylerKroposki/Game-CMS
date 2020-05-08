@@ -14,6 +14,17 @@ router.all('/*', is_login, (req, res, next) => {
 router.route('/')
     .get(controller.index);
 
+router.route('/c/:id')
+    .get(controller.getCategory);
+
+router.route('/cart/add/:id')
+    .get(controller.add);
+
+router.route('/cart/remove')
+    .get(controller.remove);
+
+router.route('/cart/empty')
+    .get(controller.empty);
 
 
 module.exports = router;

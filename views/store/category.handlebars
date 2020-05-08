@@ -1,0 +1,151 @@
+<div class="main-content hiscores__outer" role="main">
+    <div class="main-content__side main-content__side--left">
+        <div class="main-block">
+            <div class="store">
+                <div class="store__category" data-category="credits">
+                    <div class="main-block__header main-block__header--secondary">
+                        <h1>{{catName}}</h1>
+                    </div>
+                    <div class="main-block__body">
+                        <div class="store__container">
+                            {{#if products}}
+                            {{#each products}}
+                            <div class="store__product" data-id="credits_5">
+                                <div class="store__product__image">
+                                    <figure>
+                                        <picture>
+                                            <source srcset="/static/assets/img/store/{{prodImg}} 1x, /static/assets/img/store/{{prodImg}}@2x.png 2x"/><img src="/static/assets/img/store/{{prodImg}}" alt="" width="105" height="93"/>
+                                        </picture>
+                                    </figure>
+                                </div>
+                                <div class="store__product__info">
+                                    <h3>{{prodPrice}} Credits</h3>
+                                    <p>{{prodDescription}}</p>
+                                </div>
+                                <div class="clear-fix"></div>
+                                <div class="store__product__credits" style="padding-top: 20px;"><strong>${{prodPrice}}.00</strong></div>
+                                <div class="store__product__btn"><a class="hiscores__pagination__btn" href="/store/cart/add/{{prodID}}">Add To Cart</a></div>
+                                <div class="clear-fix"></div>
+                            </div>
+                            {{/each}}
+                            {{else}}
+                            <div class="store__basket__empty">
+                                <p>No Products In Given Category</p>
+                            </div>
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <aside class="main-content__side main-content__side--right">
+        <div class="sidebar">
+            <div class="sidebar__container">
+                <div class="statistic-block__outer">
+                    <div class="sidebar__block__header sidebar__block__header--secondary">
+                        <h2>Categories</h2>
+                    </div>
+                    <div class="sidebar__block link-buttons__outer">
+                        <div class="link-buttons">
+                            <a class="link-buttons__item link-buttons__item--default" href="/store/c/1">
+                            <figure>
+                                <picture>
+                                    <source srcset="/static/assets/img/icon_weapons.png 1x, /static/assets/img/icon_weapons@2x.png 2x"/><img src="/static/assets/img/icon_weapons.png" alt="" width="25" height="26"/>
+                                </picture>
+                            </figure>
+                            <h3><span>Weapons</span><small>To aid you in combat</small></h3>
+                            <div class="clear-fix"></div></a><a class="link-buttons__item link-buttons__item--default" href="/store/c/2">
+                            <figure>
+                                <picture>
+                                    <source srcset="/static/assets/img/icon_armour.png 1x, /static/assets/img/icon_armour@2x.png 2x"/><img src="/static/assets/img/icon_armour.png" alt="" width="24" height="29"/>
+                                </picture>
+                            </figure>
+                            <h3><span>Armour</span><small>Get your defensive bonus</small></h3>
+                            <div class="clear-fix"></div></a><a class="link-buttons__item link-buttons__item--default" href="/store/c/3">
+                            <figure>
+                                <picture>
+                                    <source srcset="/static/assets/img/icon_rares.png 1x, /static/assets/img/icon_rares@2x.png 2x"/><img src="/static/assets/img/icon_rares.png" alt="" width="24" height="20"/>
+                                </picture>
+                            </figure>
+                            <h3><span>Rares</span><small>Get the rarest items ingame</small></h3>
+                            <div class="clear-fix"></div></a><a class="link-buttons__item link-buttons__item--default" href="/store/c/4">
+                            <figure>
+                                <picture>
+                                    <source srcset="/static/assets/img/icon_misc.png 1x, /static/assets/img/icon_misc@2x.png 2x"/><img src="/static/assets/img/icon_misc.png" alt="" width="24" height="25"/>
+                                </picture>
+                            </figure>
+                            <h3><span>Miscellaneous</span><small>Get your miscellaneous items</small></h3>
+                            <div class="clear-fix"></div></a><a class="link-buttons__item link-buttons__item--default" href="/store/c/5">
+                            <figure>
+                                <picture>
+                                    <source srcset="/static/assets/img/icon_promo.png 1x, /static/assets/img/icon_promo@2x.png 2x"/><img src="/static/assets/img/icon_promo.png" alt="" width="30" height="29"/>
+                                </picture>
+                            </figure>
+                            <h3><span>Promotions</span><small>Get limited deals and bundles</small></h3>
+                            <div class="clear-fix"></div></a></div>
+                    </div>
+                </div>
+                <div class="statistic-block__outer">
+                    <div class="statistic-block store__credits">
+                        <figure class="statistic-block__icon">
+                            <picture>
+                                <source srcset="/static/assets/img/icon_pouch.png 1x, /static/assets/img/icon_pouch@2x.png 2x"/><img src="/static/assets/img/icon_pouch.png" alt="" width="49" height="50"/>
+                            </picture>
+                        </figure>
+                        <div class="statistic-block__container">
+                            <h2>
+                                <div class="pattern-text"><span class="pattern-text__original">{{user.userCredits}}</span><span class="pattern-text__shadow">{{user.userCredits}}</span></div>
+                            </h2>
+                            <h4>Your current credits</h4>
+                        </div>
+                        <div class="clear-fix"></div>
+                    </div>
+                </div>
+                <div class="sidebar__block__outer">
+                    <div class="sidebar__block__header">
+                        <div class="label-options__outer">
+                            <h2>Basket</h2>
+                            <div class="clear-fix"></div>
+                        </div>
+                    </div>
+                    <div class="sidebar__block top-players__outer store__basket__outer">
+                        {{#if user.cart}}
+                        <table class="top-players store__basket">
+                            <tbody>
+                            <tr>
+                                <th class="store__basket__amount">Amount</th>
+                                <th class="store__basket__product">Product</th>
+                                <th class="store__basket__price">Price</th>
+                            </tr>
+                            {{#each user.cart}}
+                                <tr>
+                                    <td class="top-players__rank">{{quantity}}</td>
+                                    <td class="top-players__username">{{prodName}}</td>
+                                    <td class="top-players__total-level">{{total}}</td>
+                                </tr>
+                            {{/each}}
+                            </tbody>
+                        </table>
+                        <div class="store__basket__footer">
+                            <div class="store__basket__footer__total"><small>Total:</small><strong><span>15,000</span> Credits</strong></div>
+                            <div class="store__basket__footer__checkout">
+                                <form method="get" action="/store/cart/empty">
+                                    <button class="btn btn--primary" type="button">Checkout</button>
+                                    <button class="btn btn--secondary store__basket__footer__clear" type="submit">Clear</button>
+                                </form>
+                            </div>
+                            <div class="clear-fix"></div>
+                        </div>
+                        {{else}}
+                        <div class="store__basket__empty">
+                            <p>Your basket is empty.</p>
+                        </div>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+    <div class="clear-fix"></div>
+</div>
