@@ -1,5 +1,3 @@
-const { is_login, is_user_logged_in} = require('../middleware/authenticate');
-
 module.exports = {
 
     selectOption : function (status, options) {
@@ -13,11 +11,7 @@ module.exports = {
         return options.inverse(this);
         },
 
-    formatMoney: (val) => {
-        return '$' + parseFloat(val, 10).toFixed(2);
-    },
-
-    getDate: (req, res) => {
+    getDate: () => {
         var today = new Date();
         var dd = String(today.getDate()).padStart(2, '0');
         var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
@@ -29,12 +23,9 @@ module.exports = {
 
     findTotal: (val) => {
         var total = 0;
-        console.log(val.length);
         for(var i = 0; i < val.length; i++) {
-            total += val[i].price * val[i].quantity;
-            console.log(total);
+            total += val[i].prodPrice * val[i].quantity;
         }
         return total;
-    },
-
+    }
 };

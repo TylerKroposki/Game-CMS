@@ -1,5 +1,5 @@
 let database = require('../config/database');
-const { findTotal } = require('../config/functions');
+const { findTotal, getDate } = require('../config/functions');
 
 module.exports = {
 
@@ -11,10 +11,12 @@ module.exports = {
     //Retrieve all products for specified category
     getCategory: async (req, res) => {
         let id = req.params.id;
-        let sql = `SELECT * FROM storeproducts WHERE catID = ${id}`;
-        let products = await database.query(sql);
+        let q1 = "SELECT * FROM storeproducts WHERE catID = ?";
+        let q2 = "SELECT prodCatName FROM productcategory WHERE prodCatID = ?";
 
-        res.render('store/category', {products: products});
+        let products = await database.query(q1, [id]);
+        let cat = await database.query(q2, [id]);
+        res.render('store/category', {products: products, cat: cat[0].prodCatName});
     },
 
     //Add product given product ID to user's cart
@@ -55,6 +57,7 @@ module.exports = {
                 filtered = i;
             }
         }
+        //Removes element
         req.session.user.cart.splice(filtered, 1);
         res.redirect('/store/cart')
     },
@@ -65,6 +68,43 @@ module.exports = {
             req.session.user.cart = [];
         }
         res.redirect('/store');
+    },
+
+    checkout: async (req, res) => {
+        let userID = req.session.user.userID;
+        let cart = req.session.user.cart;
+        let total = findTotal(cart);
+        let date = getDate();
+
+        if(cart.length > 0) {
+            if(req.session.user.userCredits >= total) {
+                let q1 = "INSERT INTO transactions(userID, tranTotal, tranDate, tranStatus) VALUES(?, ?, ?, ?)";
+                let q2 = "INSERT INTO transactionitems(tranID, prodID, tranItemQuantity) VALUES(?, ?, ?)";
+
+                //Insert new transaction
+                database.query(q1, [userID, total, date, 1], (err, res) => {
+                    if (err) throw err;
+
+                    //Insert each individual item from the transaction
+                    for (var i = 0; i < cart.length; i++) {
+                        database.query(q2, [res.insertId, cart[i].prodID, cart[i].quantity]);
+                    }
+                });
+
+                //Empty user's cart
+                req.session.user.cart = [];
+                res.redirect('/');
+            } else {
+                res.redirect('/store/insufficient');
+            }
+
+        } else {
+            res.redirect('/store')
+        }
+    },
+
+    insufficient: (req, res) => {
+        res.render('store/insufficient');
     }
 
 

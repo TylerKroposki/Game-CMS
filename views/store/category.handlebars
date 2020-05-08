@@ -4,7 +4,7 @@
             <div class="store">
                 <div class="store__category" data-category="credits">
                     <div class="main-block__header main-block__header--secondary">
-                        <h1>{{catName}}</h1>
+                        <h1>{{cat}}</h1>
                     </div>
                     <div class="main-block__body">
                         <div class="store__container">
@@ -130,8 +130,10 @@
                         <div class="store__basket__footer">
                             <div class="store__basket__footer__total"><small>Total:</small><strong><span>15,000</span> Credits</strong></div>
                             <div class="store__basket__footer__checkout">
+                                <form method="get" action="/store/checkout">
+                                    <button class="btn btn--primary" type="submit">Checkout</button>
+                                </form>
                                 <form method="get" action="/store/cart/empty">
-                                    <button class="btn btn--primary" type="button">Checkout</button>
                                     <button class="btn btn--secondary store__basket__footer__clear" type="submit">Clear</button>
                                 </form>
                             </div>

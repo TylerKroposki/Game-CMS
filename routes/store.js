@@ -26,5 +26,11 @@ router.route('/cart/remove')
 router.route('/cart/empty')
     .get(controller.empty);
 
+router.route('/checkout')
+    .get(controller.checkout);
+
+router.route('/insufficient')
+    .get(controller.insufficient);
+
 
 module.exports = router;
